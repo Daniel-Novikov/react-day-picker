@@ -20,11 +20,7 @@ import {
 import { Formatters } from './Formatters';
 import { Labels } from './Labels';
 import { Matcher } from './Matchers';
-import {
-  CustomModifiers,
-  ModifierClassNames,
-  ModifierStyles
-} from './Modifiers';
+import { DayModifiers, ModifierClassNames, ModifierStyles } from './Modifiers';
 import { ClassNames, StyledComponent, Styles } from './Styles';
 
 /**
@@ -159,6 +155,15 @@ export interface DayPickerProps {
 
   /** Content to add to the `tfoot` element. */
   footer?: React.ReactNode;
+
+  /**
+   * By setting this prop, DayPicker will focus the first selected day (if set)
+   * or the today's date (if not disabled).
+   *
+   * Use this prop if you need to focus DayPicker when initially rendered, like
+   * when rendering it after a user actions, for improved accessibility.
+   **/
+  initialFocus?: boolean;
   // #endregion
 
   // #region modifiers props
@@ -184,7 +189,7 @@ export interface DayPickerProps {
   /**
    * Add modifiers to the matching days.
    */
-  modifiers?: CustomModifiers;
+  modifiers?: DayModifiers;
   /**
    * The prefix to add to the modifiers class names. Default is `rdp-day_`.
    *
